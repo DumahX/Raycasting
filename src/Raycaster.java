@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 public class Raycaster extends JPanel {
     private final Player player = new Player();
     private final GameMap gameMap = new GameMap();
-    private final int MINIMAP_SCALE = 10;
 
     public Raycaster() {
         setFocusable(true);
@@ -41,6 +40,7 @@ public class Raycaster extends JPanel {
         super.paintComponent(g);
 
         renderScene(g);
+        int MINIMAP_SCALE = 10;
         gameMap.renderMinimap(g, player, MINIMAP_SCALE);
     }
 
@@ -108,9 +108,9 @@ public class Raycaster extends JPanel {
 
             // Calculate distance to the wall.
             if (side == 0) {
-                perpWallDistance = (mapX - player.xLocation + (1 - stepX) / 2) / rayDirectionX;
+                perpWallDistance = (mapX - player.xLocation + (double) (1 - stepX) / 2) / rayDirectionX;
             } else {
-                perpWallDistance = (mapY - player.yLocation + (1 - stepY) / 2) / rayDirectionY;
+                perpWallDistance = (mapY - player.yLocation + (double) (1 - stepY) / 2) / rayDirectionY;
             }
 
             // Figure out how tall the wall we're drawing is.
